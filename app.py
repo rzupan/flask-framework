@@ -41,7 +41,7 @@ def about():
   return render_template('about.html')
 
 
-@app.route('/graph/', methods=['GET', 'POST'])
+@app.route('/graph', methods=['GET', 'POST'])
 def show_graph():
 
 	#Initialize the plot and then add the components to the plot.
