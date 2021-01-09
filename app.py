@@ -9,27 +9,27 @@ app = Flask(__name__)
 
 def plotInfo(ticker):
 
-	#My personal API key
-	key = 'YY749BF6ETJWL2A7'
+    #My personal API key
+    key = 'YY749BF6ETJWL2A7'
 
-	#Define the url and grab the json of the data
-	url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&&symbol={}&apikey={}'.format(ticker, key)
-	response = requests.get(url)
+    #Define the url and grab the json of the data
+    url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&&symbol={}&apikey={}'.format(ticker, key)
+    response = requests.get(url)
 
-	#Define the dataframe as the Daily time series
-	df = pd.DataFrame(response.json()['Time Series (Daily)'])
+    #Define the dataframe as the Daily time series
+    df = pd.DataFrame(response.json()['Time Series (Daily)'])
 
-	#Define some plot values
-	p = figure(title=ticker+" Close Price", x_axis_type='datetime', x_axis_label='Date', y_axis_label='Price')
-	p.title.align = "center"
-	p.title.text_color = "black"
-	p.title.text_font_size = "25px"
+    #Define some plot values
+    p = figure(title=ticker+" Close Price", x_axis_type='datetime', x_axis_label='Date', y_axis_label='Price')
+    p.title.align = "center"
+    p.title.text_color = "black"
+    p.title.text_font_size = "25px"
 
-	#Define the line plot as the datetime data and the closing price of the given Ticker.
-	#Note this is only for the most recent 31 days of available data (i.e., 1 month)
-	p.line(df.iloc[3,0:30].index.values.astype('datetime64[ns]'), df.iloc[3,0:30].values.astype('float64'), line_width=2)
+    #Define the line plot as the datetime data and the closing price of the given Ticker.
+    #Note this is only for the most recent 31 days of available data (i.e., 1 month)
+    p.line(df.iloc[3,0:30].index.values.astype('datetime64[ns]'), df.iloc[3,0:30].values.astype('float64'), line_width=2)
 
-	return p
+    return p
 
 @app.route('/')
 def index():
@@ -42,9 +42,9 @@ def about():
 
 
 @app.route('/Graph', methods=['GET', 'POST'])
-def show_graph():
+def show_Graph():
 
-	#Initialize the plot and then add the components to the plot.
+    #Initialize the plot and then add the components to the plot.
     myPlots = []
     myPlots.append(components(plotInfo(request.form['ticker'])))
 
@@ -52,5 +52,4 @@ def show_graph():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(port=33507)
