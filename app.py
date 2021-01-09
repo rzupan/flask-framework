@@ -27,14 +27,13 @@ def graph():
 
 	key = 'YY749BF6ETJWL2A7'
 	ticker = request.form['ticker']
-	print(ticker)
 	url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&&symbol={}&apikey={}'.format(ticker, key)
 
 	response = requests.get(url)
 
 	df = pd.DataFrame(response.json()['Time Series (Daily)'])
 
-	p = figure(title=request.form['ticker']+" Close Price", x_axis_type='datetime', x_axis_label='Date', y_axis_label='Price')
+	p = figure(title=ticker+" Close Price", x_axis_type='datetime', x_axis_label='Date', y_axis_label='Price')
 
 	p.line(df.loc['4. close',:].index.values.astype('datetime64[ns]'), df.loc['4. close',:].values.astype('float64'), legend_label="Temp.", line_width=2)
 
