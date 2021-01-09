@@ -3,9 +3,9 @@ import pandas as pd
 from bokeh.plotting import figure
 from bokeh.embed import components
 import requests
-import os
 
 app = Flask(__name__)
+app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 def plotInfo(ticker):
 
