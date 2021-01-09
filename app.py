@@ -41,14 +41,14 @@ def about():
   return render_template('about.html')
 
 
-@app.route('/graph', methods=['GET', 'POST'])
+@app.route('/Graph', methods=['GET', 'POST'])
 def show_graph():
 
 	#Initialize the plot and then add the components to the plot.
     myPlots = []
     myPlots.append(components(plotInfo(request.form['ticker'])))
 
-    return render_template('graph.html', plots=myPlots)
+    return render_template('Graph.html', plots=myPlots)
 
 
 if __name__ == "__main__":
