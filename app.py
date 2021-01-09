@@ -5,7 +5,7 @@ from bokeh.embed import components
 import requests
 
 app = Flask(__name__)
-app.config['EXPLAIN_TEMPLATE_LOADING'] = True
+#app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 def plotInfo(ticker):
 
