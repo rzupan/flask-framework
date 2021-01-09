@@ -12,7 +12,7 @@ def about():
   return render_template('about.html')
 
 @app.route('/Graph')
-def about():
+def graph():
 	import pandas as pd
 	import numpy as np
 	from bokeh.plotting import figure, output_file, show, save
